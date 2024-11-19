@@ -1,8 +1,18 @@
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import img from "/Water.png";
+import { useForm } from "react-hook-form";
 
 const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => console.log(data);
+
   return (
     <div className="bg-base-200">
       <div className="hero  container mx-auto min-h-screen">
@@ -12,7 +22,7 @@ const Register = () => {
               <img src={img} className="size-16" alt="" />
               <h2 className="lg:text-4xl text-2xl font-bold ">Register Now</h2>
             </div>
-            <form className="card-body">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -21,7 +31,7 @@ const Register = () => {
                   type="email"
                   placeholder="email"
                   className="input input-bordered"
-                  required
+                  {...register("email", { required: true })}
                 />
               </div>
               <div className="form-control">
@@ -32,7 +42,7 @@ const Register = () => {
                   type="password"
                   placeholder="password"
                   className="input input-bordered"
-                  required
+                  {...register("password", { required: true })}
                 />
               </div>
               <div className="form-control">
@@ -41,9 +51,9 @@ const Register = () => {
                 </label>
                 <input
                   type="password"
-                  placeholder="Confirm password"
+                  placeholder="Confirm  password"
                   className="input input-bordered"
-                  required
+                  {...register("confirmPass", { required: true })}
                 />
               </div>
               <div className="form-control mt-6">
