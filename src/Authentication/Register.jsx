@@ -2,11 +2,10 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import img from "/Water.png";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
+import useAuth from "../Hooks/useAuth";
 
 const Register = () => {
-  const { registerUser } = useContext(AuthContext);
+  const { registerUser } = useAuth();
 
   const {
     register,
@@ -75,6 +74,24 @@ const Register = () => {
                   className="input input-bordered"
                   {...register("confirmPass", { required: true })}
                 />
+                {errors.confirmPass && (
+                  <p className="text-sm text-red-950 font-semibold mt-2">
+                    This Field is required
+                  </p>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Role</span>
+                </label>
+                <select
+                  defaultValue="buyer"
+                  className="select select-bordered w-full max-w-md"
+                >
+                  <option value="buyer">Buyer</option>
+                  <option value="seller">Seller</option>
+                  <option value="admin">Admin</option>
+                </select>
                 {errors.confirmPass && (
                   <p className="text-sm text-red-950 font-semibold mt-2">
                     This Field is required
