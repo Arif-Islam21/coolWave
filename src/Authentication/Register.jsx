@@ -2,8 +2,12 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import img from "/Water.png";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Register = () => {
+  const { registerUser } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
@@ -13,6 +17,10 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     console.log(data);
+    const { email, password } = data;
+    await registerUser(email, password).then((res) => {
+      console.log(res.user.uid);
+    });
   };
 
   return (
