@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
 
 const Register = () => {
-  const { registerUser } = useAuth();
+  const { registerUser, googleLogin } = useAuth();
 
   const {
     register,
@@ -20,6 +20,16 @@ const Register = () => {
     await registerUser(email, password).then((res) => {
       console.log(res.user.uid);
     });
+  };
+
+  const googleSignIn = async () => {
+    await googleLogin()
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
@@ -104,7 +114,10 @@ const Register = () => {
             </form>
             <div className="divider">Login With social media</div>
             <div className="mx-6">
-              <button className="btn btn-block btn-neutral  my-6  ">
+              <button
+                onClick={googleSignIn}
+                className="btn btn-block btn-neutral  my-6  "
+              >
                 <FcGoogle size={30} />
               </button>
               <p className="text-center mb-4 ">

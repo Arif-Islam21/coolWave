@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import useAuth from "../Hooks/useAuth";
 
 const Login = () => {
-  const { loginUser } = useAuth();
+  const { loginUser, googleLogin } = useAuth();
 
   const {
     register,
@@ -20,6 +20,16 @@ const Login = () => {
     await loginUser(email, password).then((res) => {
       console.log(res.user.uid);
     });
+  };
+
+  const googleSignIn = async () => {
+    await googleLogin()
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
@@ -75,7 +85,10 @@ const Login = () => {
             </form>
             <div className="divider">Login With social media</div>
             <div className="mx-6">
-              <button className="btn btn-block btn-neutral  my-6  ">
+              <button
+                onClick={googleSignIn}
+                className="btn btn-block btn-neutral  my-6  "
+              >
                 <FcGoogle size={30} />
               </button>
               <p className="text-center mb-4 ">
