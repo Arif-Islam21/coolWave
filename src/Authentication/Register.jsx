@@ -11,7 +11,9 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
     <div className="bg-base-200">
@@ -33,6 +35,11 @@ const Register = () => {
                   className="input input-bordered"
                   {...register("email", { required: true })}
                 />
+                {errors.email && (
+                  <p className="text-sm text-red-950 font-semibold mt-2">
+                    Email Field is required
+                  </p>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -44,6 +51,11 @@ const Register = () => {
                   className="input input-bordered"
                   {...register("password", { required: true })}
                 />
+                {errors.password && (
+                  <p className="text-sm text-red-950 font-semibold mt-2">
+                    Password Field is required
+                  </p>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -55,6 +67,11 @@ const Register = () => {
                   className="input input-bordered"
                   {...register("confirmPass", { required: true })}
                 />
+                {errors.confirmPass && (
+                  <p className="text-sm text-red-950 font-semibold mt-2">
+                    This Field is required
+                  </p>
+                )}
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Register</button>
