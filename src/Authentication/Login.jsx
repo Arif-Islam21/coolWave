@@ -1,8 +1,27 @@
 import { Link } from "react-router-dom";
 import img from "/Water.png";
+import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
+import useAuth from "../Hooks/useAuth";
 
 const Login = () => {
+  const { loginUser } = useAuth();
+
+  const {
+    register,
+    handleSubmit,
+    // watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    const { email, password } = data;
+    await loginUser(email, password).then((res) => {
+      console.log(res.user.uid);
+    });
+  };
+
   return (
     <div className="bg-base-200">
       <div className="hero  container mx-auto min-h-screen">
@@ -12,7 +31,7 @@ const Login = () => {
               <img src={img} className="size-16" alt="" />
               <h2 className="lg:text-4xl text-2xl font-bold ">Login Now</h2>
             </div>
-            <form className="card-body">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -21,8 +40,13 @@ const Login = () => {
                   type="email"
                   placeholder="email"
                   className="input input-bordered"
-                  required
+                  {...register("email", { required: true })}
                 />
+                {errors.email && (
+                  <p className="text-sm text-red-950 font-semibold mt-2">
+                    Email Field is required
+                  </p>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -32,8 +56,13 @@ const Login = () => {
                   type="password"
                   placeholder="password"
                   className="input input-bordered"
-                  required
+                  {...register("password", { required: true })}
                 />
+                {errors.password && (
+                  <p className="text-sm text-red-950 font-semibold mt-2">
+                    Password Field is required
+                  </p>
+                )}
                 {/* <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     Forgot password?

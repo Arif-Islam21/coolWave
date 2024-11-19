@@ -1,7 +1,8 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { app } from "../Firebase/Firebase.config";
@@ -11,7 +12,7 @@ export const AuthContext = createContext(null);
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [liading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const auth = getAuth(app);
 
   const registerUser = (email, password) => {
@@ -24,7 +25,19 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const authInfo = { registerUser, loginUser };
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (CurrentUser) => {
+      setUser(CurrentUser);
+      console.log(CurrentUser);
+      setLoading(false);
+    });
+
+    return () => {
+      unSubscribe();
+    };
+  }, [auth]);
+
+  const authInfo = { registerUser, loginUser, user, loading };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
