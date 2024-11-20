@@ -9,7 +9,6 @@ import { FaUserShield } from "react-icons/fa6";
 
 const Sidebar = () => {
   const userData = useUser();
-  console.log(userData);
 
   const buyerLink = [
     {
@@ -34,7 +33,7 @@ const Sidebar = () => {
       icon: <IoIosAddCircle size={24} />,
     },
     {
-      id: 1,
+      id: 2,
       path: "/dashboard/view-product",
       title: "View",
       icon: <HiViewGrid size={24} />,
