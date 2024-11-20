@@ -8,6 +8,8 @@ import DashboardMain from "../Page/Dashboard/DashboardMain";
 import AddProduct from "../Page/Dashboard/AddProduct";
 import ViewProduct from "../Page/Dashboard/viewProduct";
 import UpdateProduct from "../Page/Dashboard/UpdateProduct";
+import PrivateRoute from "../Private/PrivateRoute";
+import SellerRoute from "../Private/SellerRoute";
 
 const router = createBrowserRouter([
   // HOME LAYOUT
@@ -37,19 +39,35 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <DashboardMain />,
+        element: (
+          <PrivateRoute>
+            <DashboardMain />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/add-product",
-        element: <AddProduct />,
+        element: (
+          <SellerRoute>
+            <AddProduct />
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/view-product",
-        element: <ViewProduct />,
+        element: (
+          <SellerRoute>
+            <ViewProduct />
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/update-product/:id",
-        element: <UpdateProduct />,
+        element: (
+          <SellerRoute>
+            <UpdateProduct />
+          </SellerRoute>
+        ),
       },
     ],
   },
