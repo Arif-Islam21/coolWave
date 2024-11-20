@@ -16,7 +16,7 @@ export const AuthContext = createContext(null);
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const auth = getAuth(app);
   const axiosCommon = useAxiosCommon();
 
@@ -55,6 +55,7 @@ const AuthProvider = ({ children }) => {
         setLoading(false);
       } else {
         localStorage.removeItem("accessToken");
+        setUser(null);
         setLoading(false);
       }
     });
@@ -62,7 +63,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unSubscribe();
     };
-  }, [auth]);
+  }, [axiosCommon, auth]);
 
   const authInfo = {
     registerUser,

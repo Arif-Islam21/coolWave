@@ -44,7 +44,7 @@ const Sidebar = () => {
   const adminLinks = [
     {
       id: 1,
-      path: "/view-users",
+      path: "/dashboard/manage-users",
       title: "Users",
       icon: <FaUserShield size={24} />,
     },

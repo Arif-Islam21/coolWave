@@ -10,6 +10,8 @@ import ViewProduct from "../Page/Dashboard/viewProduct";
 import UpdateProduct from "../Page/Dashboard/UpdateProduct";
 import PrivateRoute from "../Private/PrivateRoute";
 import SellerRoute from "../Private/SellerRoute";
+import AdminRoute from "../Private/AdminRoute";
+import ManageUsers from "../Page/Dashboard/ManageUsers";
 
 const router = createBrowserRouter([
   // HOME LAYOUT
@@ -67,6 +69,14 @@ const router = createBrowserRouter([
           <SellerRoute>
             <UpdateProduct />
           </SellerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/manage-users",
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
         ),
       },
     ],
