@@ -5,6 +5,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import { IoIosAddCircle } from "react-icons/io";
 import { HiViewGrid } from "react-icons/hi";
+import { FaUserShield } from "react-icons/fa6";
 
 const Sidebar = () => {
   const userData = useUser();
@@ -13,13 +14,13 @@ const Sidebar = () => {
   const buyerLink = [
     {
       id: 1,
-      path: "/wishlist",
+      path: "/dashboard/wishlist",
       title: "Wishlist",
       icon: <FaHeart size={24} />,
     },
     {
       id: 2,
-      path: "/cart",
+      path: "/dashboard/cart",
       title: "Cart",
       icon: <FaCartShopping size={24} />,
     },
@@ -28,15 +29,23 @@ const Sidebar = () => {
   const sellerLinks = [
     {
       id: 1,
-      path: "/add-product",
+      path: "/dashboard/add-product",
       title: "Add Item",
       icon: <IoIosAddCircle size={24} />,
     },
     {
       id: 1,
-      path: "/view-product",
+      path: "/dashboard/view-product",
       title: "View",
       icon: <HiViewGrid size={24} />,
+    },
+  ];
+  const adminLinks = [
+    {
+      id: 1,
+      path: "/view-users",
+      title: "Users",
+      icon: <FaUserShield size={24} />,
     },
   ];
 
@@ -60,6 +69,17 @@ const Sidebar = () => {
           {userData.role === "seller" &&
             userData.status === "approved" &&
             sellerLinks.map((item) => (
+              <NavLink
+                to={item.path}
+                key={item.id}
+                className={`btn flex items-center justify-start btn-block my-2`}
+              >
+                {item.icon} <span className="text-xl">{item.title}</span>
+              </NavLink>
+            ))}
+          {userData.role === "admin" &&
+            userData.status === "approved" &&
+            adminLinks.map((item) => (
               <NavLink
                 key={item.id}
                 className={`btn flex items-center justify-start btn-block my-2`}
