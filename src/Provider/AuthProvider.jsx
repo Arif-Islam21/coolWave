@@ -8,6 +8,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { app } from "../Firebase/Firebase.config";
+import useAxiosCommon from "../Hooks/useAxiosCommon";
 
 export const AuthContext = createContext(null);
 
@@ -16,6 +17,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const auth = getAuth(app);
+  const axiosCommon = useAxiosCommon();
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -35,10 +37,20 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (CurrentUser) => {
+    const unSubscribe = onAuthStateChanged(auth, async (CurrentUser) => {
       setUser(CurrentUser);
       console.log(CurrentUser);
-      setLoading(false);
+      if (CurrentUser) {
+        const email = CurrentUser.email;
+        await axiosCommon.post("/jwt", { email }).then((res) => {
+          console.log(res.data);
+          localStorage.setItem("accessToken", res.data);
+        });
+        setLoading(false);
+      } else {
+        localStorage.removeItem("accessToken");
+        setLoading(false);
+      }
     });
 
     return () => {
