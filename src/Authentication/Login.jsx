@@ -19,7 +19,6 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     const { email, password } = data;
     await loginUser(email, password).then((res) => {
       if (res.user.uid) {

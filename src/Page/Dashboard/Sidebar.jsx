@@ -82,6 +82,7 @@ const Sidebar = () => {
             userData.status === "approved" &&
             adminLinks.map((item) => (
               <NavLink
+                to={item.path}
                 key={item.id}
                 className={`btn flex items-center justify-start btn-block my-2`}
               >
