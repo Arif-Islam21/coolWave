@@ -1,11 +1,15 @@
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "/Water.png";
 import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
+import useAxiosCommon from "../Hooks/useAxiosCommon";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { registerUser, googleLogin } = useAuth();
+  const axiosCommon = useAxiosCommon();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -15,10 +19,26 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
-    const { email, password } = data;
-    await registerUser(email, password).then((res) => {
-      console.log(res.user.uid);
+    const { email, password, role } = data;
+    const status = role === "buyer" ? "approved" : "pending";
+    const userData = { email, role, status };
+
+    await registerUser(email, password).then(async (response) => {
+      if (response.user.uid) {
+        await axiosCommon.post("/users", userData).then((res) => {
+          // console.log(res.data.insertedId);
+          if (res.data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Your work has been saved",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate("/");
+          }
+        });
+      }
     });
   };
 
@@ -97,6 +117,7 @@ const Register = () => {
                 <select
                   defaultValue="buyer"
                   className="select select-bordered w-full max-w-md"
+                  {...register("role")}
                 >
                   <option value="buyer">Buyer</option>
                   <option value="seller">Seller</option>
