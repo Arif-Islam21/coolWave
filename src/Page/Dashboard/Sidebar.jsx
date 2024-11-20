@@ -9,7 +9,7 @@ import { FaUserShield } from "react-icons/fa6";
 import useAuth from "../../Hooks/useAuth";
 
 const Sidebar = () => {
-  const userData = useUser();
+  const { userData } = useUser();
   const { logOut } = useAuth();
 
   const buyerLink = [

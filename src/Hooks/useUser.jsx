@@ -6,7 +6,7 @@ const useUser = () => {
   const { user, loading } = useAuth();
   const axiosCommon = useAxiosCommon();
 
-  const { data: userData = {} } = useQuery({
+  const { data: userData = {}, isLoading } = useQuery({
     enabled: !loading,
     queryKey: ["userData", user?.email],
     queryFn: async () => {
@@ -15,7 +15,7 @@ const useUser = () => {
     },
   });
 
-  return userData;
+  return { userData, isLoading };
 };
 
 export default useUser;

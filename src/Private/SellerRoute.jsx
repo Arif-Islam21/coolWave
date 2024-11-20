@@ -6,8 +6,8 @@ import useUser from "../Hooks/useUser";
 const SellerRoute = ({ children }) => {
   const location = useLocation();
   const { user, loading } = useAuth();
-  const userData = useUser();
-  if (loading) {
+  const { userData, isLoading } = useUser();
+  if (loading || isLoading) {
     return <p className="text-3xl text-center font-bold">Loading....</p>;
   }
   if (user && userData.role === "seller" && userData.status === "approved") {
