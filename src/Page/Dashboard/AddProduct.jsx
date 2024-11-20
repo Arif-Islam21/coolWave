@@ -8,8 +8,7 @@ const AddProduct = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
   const { user } = useAuth();
   const axiosCommon = useAxiosCommon();
