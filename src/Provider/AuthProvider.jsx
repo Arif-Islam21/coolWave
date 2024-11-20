@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
       if (CurrentUser) {
         const email = CurrentUser.email;
         await axiosCommon.post("/jwt", { email }).then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           localStorage.setItem("accessToken", res.data);
         });
         setLoading(false);
