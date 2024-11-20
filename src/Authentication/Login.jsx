@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "/Water.png";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../Hooks/useAuth";
+import Swal from "sweetalert2";
+import useAxiosCommon from "../Hooks/useAxiosCommon";
 
 const Login = () => {
   const { loginUser, googleLogin } = useAuth();
+  const navigate = useNavigate();
+  const axiosCommon = useAxiosCommon();
 
   const {
     register,
@@ -24,8 +28,26 @@ const Login = () => {
 
   const googleSignIn = async () => {
     await googleLogin()
-      .then((res) => {
-        console.log(res.user);
+      .then(async (response) => {
+        if (response.user) {
+          console.log(response.user);
+          const email = response.user.email;
+          const role = "buyer";
+          const status = "approved";
+          const userData = { email, role, status };
+          await axiosCommon.post("/users", userData).then((res) => {
+            if (res.data.insertedId) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Account created succesfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/");
+            }
+          });
+        }
       })
       .catch((err) => {
         console.error(err);
