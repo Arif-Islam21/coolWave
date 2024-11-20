@@ -22,7 +22,15 @@ const Login = () => {
     console.log(data);
     const { email, password } = data;
     await loginUser(email, password).then((res) => {
-      console.log(res.user.uid);
+      if (res.user.uid) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Logged in succesfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     });
   };
 
