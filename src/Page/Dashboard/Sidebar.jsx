@@ -6,9 +6,11 @@ import { FaCartShopping } from "react-icons/fa6";
 import { IoIosAddCircle } from "react-icons/io";
 import { HiViewGrid } from "react-icons/hi";
 import { FaUserShield } from "react-icons/fa6";
+import useAuth from "../../Hooks/useAuth";
 
 const Sidebar = () => {
   const userData = useUser();
+  const { logOut } = useAuth();
 
   const buyerLink = [
     {
@@ -88,7 +90,10 @@ const Sidebar = () => {
             ))}
         </div>
         <div className="">
-          <button className={`btn flex items-center justify-start btn-block`}>
+          <button
+            onClick={logOut}
+            className={`btn flex items-center justify-start btn-block`}
+          >
             <TbLogout2 size={28} /> <span className="text-xl">Logout</span>
           </button>
         </div>

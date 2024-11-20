@@ -4,7 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosCommon from "../../Hooks/useAxiosCommon";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateProduct = () => {
   const { id } = useParams();
@@ -15,6 +15,7 @@ const UpdateProduct = () => {
   } = useForm();
   const { user } = useAuth();
   const axiosCommon = useAxiosCommon();
+  const navigate = useNavigate();
 
   const { data } = useQuery({
     queryKey: ["updateProduct"],
@@ -45,7 +46,16 @@ const UpdateProduct = () => {
     await axiosCommon
       .patch(`/update-product/${id}`, productInfo)
       .then((res) => {
-        console.log(res);
+        if (res.data.modifiedCount) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your product has been updated succesfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/dashboard/view-product");
+        }
       });
   };
 
