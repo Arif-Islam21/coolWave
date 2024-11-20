@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import userIcon from "../../assets/user.png";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -50,12 +51,37 @@ const Navbar = () => {
       </div>
       <div className="navbar-end gap-4">
         {user ? (
-          <button
-            onClick={logOut}
-            className="btn btn-outline px-6 font-bold btn-neutral"
-          >
-            Logout
-          </button>
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS Navbar component"
+                  src={user?.photoURL || userIcon}
+                />
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[10] mt-3 w-52 p-2 shadow"
+            >
+              <li className="disabled disabled:text-black">
+                <a className="justify-between">{user?.email}</a>
+              </li>
+              <NavLink className="btn btn-outline btn-sm px-6 font-bold btn-neutral my-2">
+                Dashboard
+              </NavLink>
+              <button
+                onClick={logOut}
+                className="btn btn-outline btn-sm px-6 font-bold btn-neutral"
+              >
+                Logout
+              </button>
+            </ul>
+          </div>
         ) : (
           <>
             <Link
