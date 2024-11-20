@@ -26,12 +26,11 @@ const Register = () => {
     await registerUser(email, password).then(async (response) => {
       if (response.user.uid) {
         await axiosCommon.post("/users", userData).then((res) => {
-          // console.log(res.data.insertedId);
           if (res.data.insertedId) {
             Swal.fire({
-              position: "top-end",
+              position: "center",
               icon: "success",
-              title: "Your work has been saved",
+              title: "Account created succesfully",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -44,8 +43,26 @@ const Register = () => {
 
   const googleSignIn = async () => {
     await googleLogin()
-      .then((res) => {
-        console.log(res.user);
+      .then(async (response) => {
+        if (response.user) {
+          console.log(response.user);
+          const email = response.user.email;
+          const role = "buyer";
+          const status = "approved";
+          const userData = { email, role, status };
+          await axiosCommon.post("/users", userData).then((res) => {
+            if (res.data.insertedId) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Account created succesfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/");
+            }
+          });
+        }
       })
       .catch((err) => {
         console.error(err);
