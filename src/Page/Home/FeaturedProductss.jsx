@@ -8,7 +8,7 @@ import FeaturedProductCard from "../../Components/FeaturedProductCard";
 
 const FeaturedProductss = () => {
   return (
-    <div className="mx-6 my-8">
+    <div className="container mx-auto my-8">
       <SectionTitle
         title="Featured Products"
         description="See all our featured products here"
@@ -16,22 +16,22 @@ const FeaturedProductss = () => {
       <>
         <Swiper
           slidesPerView={1}
-          spaceBetween={10}
+          spaceBetween={5}
           pagination={{
             clickable: true,
           }}
           breakpoints={{
             640: {
               slidesPerView: 2,
-              spaceBetween: 20,
+              spaceBetween: 10,
             },
             768: {
               slidesPerView: 3,
-              spaceBetween: 40,
+              spaceBetween: 20,
             },
             1024: {
               slidesPerView: 4,
-              spaceBetween: 50,
+              spaceBetween: 25,
             },
           }}
           modules={[Pagination]}
