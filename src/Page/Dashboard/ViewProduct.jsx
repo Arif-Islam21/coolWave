@@ -4,6 +4,7 @@ import { MdDelete } from "react-icons/md";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosCommon from "../../Hooks/useAxiosCommon";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const ViewProduct = () => {
   const { user } = useAuth();
@@ -55,9 +56,12 @@ const ViewProduct = () => {
               <td>$ {item.priceInt}</td>
               <td>{item.stockInt}</td>
               <td>
-                <button className="btn btn-outline btn-neutral">
+                <Link
+                  to={`/dashboard/update-product/${item._id}`}
+                  className="btn btn-outline btn-neutral"
+                >
                   <MdOutlineTipsAndUpdates size={24} />
-                </button>
+                </Link>
               </td>
               <td>
                 <button

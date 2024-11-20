@@ -7,6 +7,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import DashboardMain from "../Page/Dashboard/DashboardMain";
 import AddProduct from "../Page/Dashboard/AddProduct";
 import ViewProduct from "../Page/Dashboard/viewProduct";
+import UpdateProduct from "../Page/Dashboard/UpdateProduct";
 
 const router = createBrowserRouter([
   // HOME LAYOUT
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/view-product",
         element: <ViewProduct />,
+      },
+      {
+        path: "/dashboard/update-product/:id",
+        element: <UpdateProduct />,
       },
     ],
   },
