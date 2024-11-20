@@ -71,7 +71,10 @@ const Navbar = () => {
               <li className="disabled disabled:text-black">
                 <a className="justify-between">{user?.email}</a>
               </li>
-              <NavLink className="btn btn-outline btn-sm px-6 font-bold btn-neutral my-2">
+              <NavLink
+                to="/dashboard"
+                className="btn btn-outline btn-sm px-6 font-bold btn-neutral my-2"
+              >
                 Dashboard
               </NavLink>
               <button
