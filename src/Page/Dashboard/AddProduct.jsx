@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosCommon from "../../Hooks/useAxiosCommon";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const {
@@ -12,6 +13,7 @@ const AddProduct = () => {
   } = useForm();
   const { user } = useAuth();
   const axiosCommon = useAxiosCommon();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     const { brand, category, title, stock, price, photo, description } = data;
@@ -35,6 +37,7 @@ const AddProduct = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate("/dashboard");
       }
     });
   };
