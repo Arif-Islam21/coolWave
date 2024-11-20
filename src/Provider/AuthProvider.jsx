@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
 import { app } from "../Firebase/Firebase.config";
 import useAxiosCommon from "../Hooks/useAxiosCommon";
@@ -36,6 +37,11 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, async (CurrentUser) => {
       setUser(CurrentUser);
@@ -58,7 +64,14 @@ const AuthProvider = ({ children }) => {
     };
   }, [auth]);
 
-  const authInfo = { registerUser, loginUser, user, loading, googleLogin };
+  const authInfo = {
+    registerUser,
+    loginUser,
+    user,
+    loading,
+    googleLogin,
+    logOut,
+  };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

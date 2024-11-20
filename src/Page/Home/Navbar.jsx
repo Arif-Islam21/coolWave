@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+
   return (
     <div className="navbar container mx-auto">
       <div className="navbar-start">
@@ -46,15 +49,26 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end gap-4">
-        <Link
-          to="/login"
-          className="btn btn-outline px-6 font-bold btn-neutral"
-        >
-          Login
-        </Link>
-        <Link to="/register" className="btn px-6 font-bold btn-neutral">
-          Register
-        </Link>
+        {user ? (
+          <button
+            onClick={logOut}
+            className="btn btn-outline px-6 font-bold btn-neutral"
+          >
+            Logout
+          </button>
+        ) : (
+          <>
+            <Link
+              to="/login"
+              className="btn btn-outline px-6 font-bold btn-neutral"
+            >
+              Login
+            </Link>
+            <Link to="/register" className="btn px-6 font-bold btn-neutral">
+              Register
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
