@@ -42,7 +42,9 @@ const Login = () => {
           const email = response.user.email;
           const role = "buyer";
           const status = "approved";
-          const userData = { email, role, status };
+          const wishList = [];
+          const cart = [];
+          const userData = { email, role, status, wishList, cart };
           await axiosCommon.post("/users", userData).then((res) => {
             if (res.data.insertedId) {
               Swal.fire({

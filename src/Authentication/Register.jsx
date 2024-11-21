@@ -21,7 +21,9 @@ const Register = () => {
   const onSubmit = async (data) => {
     const { email, password, role } = data;
     const status = role === "buyer" ? "approved" : "pending";
-    const userData = { email, role, status };
+    const wishList = [];
+    const cart = [];
+    const userData = { email, role, status, wishList, cart };
 
     await registerUser(email, password).then(async (response) => {
       if (response.user.uid) {
@@ -49,7 +51,9 @@ const Register = () => {
           const email = response.user.email;
           const role = "buyer";
           const status = "approved";
-          const userData = { email, role, status };
+          const wishList = [];
+          const cart = [];
+          const userData = { email, role, status, wishList, cart };
           await axiosCommon.post("/users", userData).then((res) => {
             if (res.data.insertedId) {
               Swal.fire({

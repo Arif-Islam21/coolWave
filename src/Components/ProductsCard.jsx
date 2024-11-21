@@ -2,11 +2,32 @@ import { TbBrand4Chan } from "react-icons/tb";
 import { MdCategory } from "react-icons/md";
 import { IoIosPricetags } from "react-icons/io";
 import { AiOutlineStock } from "react-icons/ai";
+import useAxiosCommon from "../Hooks/useAxiosCommon";
+import useUser from "../Hooks/useUser";
+import axios from "axios";
 
 // eslint-disable-next-line react/prop-types
 const ProductsCard = ({ product }) => {
   // eslint-disable-next-line react/prop-types
-  const { brand, category, photo, priceInt, stockInt, title } = product;
+  const { _id, brand, category, photo, priceInt, stockInt, title } = product;
+  const { userData } = useUser();
+
+  const addToWishlist = async () => {
+    if (userData?.email && _id) {
+      await axios
+        .patch("http://localhost:3000/wishlist/add", {
+          email: userData?.email,
+          productId: _id,
+        })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
+
   return (
     <div className="card bg-base-100 mb-6 shadow-xl">
       <figure>
@@ -35,7 +56,12 @@ const ProductsCard = ({ product }) => {
           </p>
         </div>
         <div className="card-actions justify-between">
-          <button className="btn btn-neutral btn-sm px-6">Wishlist</button>
+          <button
+            onClick={addToWishlist}
+            className="btn btn-neutral btn-sm px-6"
+          >
+            Wishlist
+          </button>
           <button className="btn btn-neutral btn-sm px-6">Cart</button>
         </div>
       </div>
