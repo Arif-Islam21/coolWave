@@ -15,6 +15,12 @@ const ManageUsers = () => {
     },
   });
 
+  const approveSeller = async (id) => {
+    await axiosCommon.patch(`/approveSeller/${id}`).then((res) => {
+      console.log(res);
+    });
+  };
+
   const deleteUser = async (id) => {
     await axiosCommon.delete(`/user/${id}`).then((res) => {
       if (res.data.deletedCount) {
@@ -69,7 +75,10 @@ const ManageUsers = () => {
                 </span>
               </td>
               <td>
-                <button className="btn btn-outline bg-green-600 text-white">
+                <button
+                  onClick={() => approveSeller(item._id)}
+                  className="btn btn-outline bg-green-600 text-white"
+                >
                   <FaPen size={24} />
                 </button>
               </td>
