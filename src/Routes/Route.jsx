@@ -13,6 +13,7 @@ import SellerRoute from "../Private/SellerRoute";
 import AdminRoute from "../Private/AdminRoute";
 import ManageUsers from "../Page/Dashboard/ManageUsers";
 import Products from "../Page/Products/Products";
+import ShowWishlistItem from "../Page/Dashboard/Buyer/ShowWishlistItem";
 
 const router = createBrowserRouter([
   // HOME LAYOUT
@@ -82,6 +83,14 @@ const router = createBrowserRouter([
           <AdminRoute>
             <ManageUsers />
           </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/viewWishlist",
+        element: (
+          <PrivateRoute>
+            <ShowWishlistItem />
+          </PrivateRoute>
         ),
       },
     ],

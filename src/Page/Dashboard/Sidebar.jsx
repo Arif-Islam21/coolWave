@@ -15,7 +15,7 @@ const Sidebar = () => {
   const buyerLink = [
     {
       id: 1,
-      path: "/dashboard/wishlist",
+      path: "/dashboard/viewWishlist",
       title: "Wishlist",
       icon: <FaHeart size={24} />,
     },
@@ -61,6 +61,7 @@ const Sidebar = () => {
           {userData.role === "buyer" &&
             buyerLink.map((item) => (
               <NavLink
+                to={item.path}
                 key={item.id}
                 className={`btn flex items-center justify-start btn-block my-2`}
               >
