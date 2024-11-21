@@ -63,7 +63,7 @@ const ProductsCard = ({ product }) => {
   return (
     <div className="card bg-base-100 mb-6 shadow-xl">
       <figure>
-        <img src={photo} alt={title} />
+        <img src={photo} alt={title} className="h-52 object-cover w-full" />
       </figure>
       <div className="card-body">
         <h2 className="card-title uppercase">{title}</h2>
