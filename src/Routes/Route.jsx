@@ -16,6 +16,7 @@ import Products from "../Page/Products/Products";
 import ShowWishlistItem from "../Page/Dashboard/Buyer/ShowWishlistItem";
 import ShowCartItem from "../Page/Dashboard/Buyer/ShowCartItem";
 import About from "../Page/About/About";
+import Contact from "../Page/About/Contact";
 
 const router = createBrowserRouter([
   // HOME LAYOUT
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
   },
