@@ -5,22 +5,55 @@ import { AiOutlineStock } from "react-icons/ai";
 import useAxiosCommon from "../Hooks/useAxiosCommon";
 import useUser from "../Hooks/useUser";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 // eslint-disable-next-line react/prop-types
 const ProductsCard = ({ product }) => {
   // eslint-disable-next-line react/prop-types
   const { _id, brand, category, photo, priceInt, stockInt, title } = product;
   const { userData } = useUser();
+  const axiosCommon = useAxiosCommon();
 
   const addToWishlist = async () => {
     if (userData?.email && _id) {
-      await axios
-        .patch("http://localhost:3000/wishlist/add", {
+      await axiosCommon
+        .patch("/wishlist/add", {
           email: userData?.email,
           productId: _id,
         })
         .then((res) => {
-          console.log(res.data);
+          if (res.data.modifiedCount) {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "added to wishlist",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
+  const addToCart = async () => {
+    if (userData?.email && _id) {
+      await axiosCommon
+        .patch("/cart/add", {
+          email: userData?.email,
+          productId: _id,
+        })
+        .then((res) => {
+          if (res.data.modifiedCount) {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "added to cart",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
         })
         .catch((err) => {
           console.error(err);
@@ -62,7 +95,9 @@ const ProductsCard = ({ product }) => {
           >
             Wishlist
           </button>
-          <button className="btn btn-neutral btn-sm px-6">Cart</button>
+          <button onClick={addToCart} className="btn btn-neutral btn-sm px-6">
+            Cart
+          </button>
         </div>
       </div>
     </div>
