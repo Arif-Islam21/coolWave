@@ -35,6 +35,16 @@ const Products = () => {
         setCategory={setCategory}
         setSorting={setSorting}
       />
+      {products.length === 0 && (
+        <>
+          <div className="text-center flex justify-center items-center flex-col mt-24">
+            <h2 className="text-2xl font-bold">No Products here</h2>
+            <p className="font-semibold">
+              Filter your search or sorting parameters
+            </p>
+          </div>
+        </>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {products?.map((product) => (
           <ProductsCard key={product._id} product={product} />
