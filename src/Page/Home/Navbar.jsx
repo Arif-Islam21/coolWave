@@ -4,6 +4,21 @@ import userIcon from "../../assets/user.png";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const links = (
+    <>
+      <div className="flex flex-col lg:flex-row items-center gap-2">
+        <li>
+          <NavLink to={"/products"}>Products</NavLink>
+        </li>
+        <li>
+          <NavLink to="/about">About</NavLink>
+        </li>
+        <li>
+          <NavLink to="/contact">Contact</NavLink>
+        </li>
+      </div>
+    </>
+  );
 
   return (
     <div className="navbar container mx-auto">
@@ -27,27 +42,15 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[10] mt-3 w-52 p-2 shadow"
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+            {links}
           </ul>
         </div>
         <a className="btn btn-ghost text-xl font-serif italic">Cool Wave</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <a>Item 3</a>
-          </li>
-        </ul>
+        <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end gap-4">
         {user ? (

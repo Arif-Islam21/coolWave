@@ -12,6 +12,7 @@ import PrivateRoute from "../Private/PrivateRoute";
 import SellerRoute from "../Private/SellerRoute";
 import AdminRoute from "../Private/AdminRoute";
 import ManageUsers from "../Page/Dashboard/ManageUsers";
+import Products from "../Page/Products/Products";
 
 const router = createBrowserRouter([
   // HOME LAYOUT
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "/products",
+        element: <Products />,
       },
     ],
   },
