@@ -7,14 +7,21 @@ import ProductsCard from "../../Components/ProductsCard";
 const Products = () => {
   const axiosCommon = useAxiosCommon();
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
+  const [brand, setBrand] = useState("");
+  const [category, setCategory] = useState("");
+  const [sorting, setSorting] = useState("asc");
+  // console.log({ search, brand, category, sorting });
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data } = await axiosCommon.get(`/products`);
+      const { data } = await axiosCommon.get(
+        `/products?search=${search}&brand=${brand}&category=${category}&sorting=${sorting}`
+      );
       setProducts(data);
     };
     fetchProducts();
-  }, [axiosCommon]);
+  }, [axiosCommon, brand, category, search, sorting]);
 
   return (
     <div className="container mx-auto">
@@ -22,7 +29,12 @@ const Products = () => {
         title="All Products"
         description="See all our products here. Find your favourite"
       />
-      <Searchbar />
+      <Searchbar
+        setSearch={setSearch}
+        setBrand={setBrand}
+        setCategory={setCategory}
+        setSorting={setSorting}
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {products?.map((product) => (
           <ProductsCard key={product._id} product={product} />
