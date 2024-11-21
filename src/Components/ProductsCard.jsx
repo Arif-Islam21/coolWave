@@ -4,7 +4,6 @@ import { IoIosPricetags } from "react-icons/io";
 import { AiOutlineStock } from "react-icons/ai";
 import useAxiosCommon from "../Hooks/useAxiosCommon";
 import useUser from "../Hooks/useUser";
-import axios from "axios";
 import Swal from "sweetalert2";
 
 // eslint-disable-next-line react/prop-types
@@ -88,7 +87,11 @@ const ProductsCard = ({ product }) => {
             {stockInt}
           </p>
         </div>
-        <div className="card-actions justify-between">
+        <div
+          className={`card-actions ${
+            userData?.role === "buyer" ? "flex" : "hidden"
+          } justify-between`}
+        >
           <button
             onClick={addToWishlist}
             className="btn btn-neutral btn-sm px-6"
