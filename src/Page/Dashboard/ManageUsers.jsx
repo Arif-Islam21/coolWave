@@ -17,7 +17,17 @@ const ManageUsers = () => {
 
   const approveSeller = async (id) => {
     await axiosCommon.patch(`/approveSeller/${id}`).then((res) => {
-      console.log(res);
+      if (res.data.modifiedCount) {
+        console.log(res.data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "User Promoted succesfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        refetch();
+      }
     });
   };
 
