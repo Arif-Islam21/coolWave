@@ -2,14 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import useUser from "../../../Hooks/useUser";
 import useAxiosCommon from "../../../Hooks/useAxiosCommon";
 
-const ShowWishlistItem = () => {
+const ShowCartItem = () => {
   const { userData } = useUser();
   const axiosCommon = useAxiosCommon();
 
-  const { data: wishlistData = [] } = useQuery({
-    queryKey: ["ShowWishlistItem"],
+  const { data: cartData = [] } = useQuery({
+    queryKey: ["ShowCartItem"],
     queryFn: async () => {
-      const { data } = await axiosCommon.get(`/wishlist-items/${userData._id}`);
+      const { data } = await axiosCommon.get(`/cart-items/${userData._id}`);
       return data;
     },
   });
@@ -28,7 +28,7 @@ const ShowWishlistItem = () => {
           </tr>
         </thead>
         <tbody>
-          {wishlistData.map((item, idx) => (
+          {cartData.map((item, idx) => (
             <tr key={item._id}>
               <td>{idx + 1}</td>
               <td>{item.title}</td>
@@ -44,4 +44,4 @@ const ShowWishlistItem = () => {
   );
 };
 
-export default ShowWishlistItem;
+export default ShowCartItem;

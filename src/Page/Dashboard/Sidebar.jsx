@@ -21,7 +21,7 @@ const Sidebar = () => {
     },
     {
       id: 2,
-      path: "/dashboard/cart",
+      path: "/dashboard/viewcart",
       title: "Cart",
       icon: <FaCartShopping size={24} />,
     },
