@@ -8,6 +8,9 @@ const Navbar = () => {
     <>
       <div className="flex flex-col lg:flex-row items-center gap-2">
         <li>
+          <NavLink to={"/"}>Home</NavLink>
+        </li>
+        <li>
           <NavLink to={"/products"}>Products</NavLink>
         </li>
         <li>
@@ -47,7 +50,9 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl font-serif italic">Cool Wave</a>
+        <Link to="/" className="btn btn-ghost text-xl font-serif italic">
+          Cool Wave
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
