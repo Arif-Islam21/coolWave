@@ -15,6 +15,7 @@ import ManageUsers from "../Page/Dashboard/ManageUsers";
 import Products from "../Page/Products/Products";
 import ShowWishlistItem from "../Page/Dashboard/Buyer/ShowWishlistItem";
 import ShowCartItem from "../Page/Dashboard/Buyer/ShowCartItem";
+import About from "../Page/About/About";
 
 const router = createBrowserRouter([
   // HOME LAYOUT
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <Products />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
     ],
   },
