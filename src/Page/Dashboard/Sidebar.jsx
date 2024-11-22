@@ -52,7 +52,7 @@ const Sidebar = () => {
 
   return (
     <div className="min-h-screen h-full pl-2 pt-8 bg-amber-400">
-      <NavLink to="/" className="text-2xl btn font-bold font-serif">
+      <NavLink to="/" className="text-sm lg:text-2xl btn font-bold font-serif">
         Cool Wave
       </NavLink>
       {/* LINKN ITEMS */}
@@ -65,7 +65,8 @@ const Sidebar = () => {
                 key={item.id}
                 className={`btn flex items-center justify-start btn-block my-2`}
               >
-                {item.icon} <span className="text-xl">{item.title}</span>
+                {item.icon}{" "}
+                <span className="text-xl hidden md:flex">{item.title}</span>
               </NavLink>
             ))}
           {userData.role === "seller" &&
@@ -76,7 +77,8 @@ const Sidebar = () => {
                 key={item.id}
                 className={`btn flex items-center justify-start btn-block my-2`}
               >
-                {item.icon} <span className="text-xl">{item.title}</span>
+                {item.icon}{" "}
+                <span className="text-xl hidden md:flex">{item.title}</span>
               </NavLink>
             ))}
           {userData.role === "admin" &&
@@ -87,7 +89,8 @@ const Sidebar = () => {
                 key={item.id}
                 className={`btn flex items-center justify-start btn-block my-2`}
               >
-                {item.icon} <span className="text-xl">{item.title}</span>
+                {item.icon}{" "}
+                <span className="text-xl hidden md:flex">{item.title}</span>
               </NavLink>
             ))}
         </div>
@@ -96,7 +99,8 @@ const Sidebar = () => {
             onClick={logOut}
             className={`btn flex items-center justify-start btn-block`}
           >
-            <TbLogout2 size={28} /> <span className="text-xl">Logout</span>
+            <TbLogout2 size={28} />{" "}
+            <span className="text-xl hidden md:flex">Logout</span>
           </button>
         </div>
       </div>

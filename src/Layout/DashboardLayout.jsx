@@ -4,11 +4,11 @@ import Sidebar from "../Page/Dashboard/Sidebar";
 const DashboardLayout = () => {
   return (
     <div className="grid grid-cols-12 gap-4 ">
-      <div className="grid w-full h-full col-span-2">
+      <div className="grid w-full h-full col-span-3 lg:col-span-2">
         <Sidebar />
       </div>
 
-      <div className="col-span-10 grid h-full w-full ">
+      <div className="col-span-9 lg:col-span-10 grid h-full w-full ">
         <Outlet />
       </div>
     </div>

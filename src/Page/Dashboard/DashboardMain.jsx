@@ -4,9 +4,9 @@ import useUser from "../../Hooks/useUser";
 const DashboardMain = () => {
   const { userData } = useUser();
   return (
-    <div className="flex flex-col justify-center items-center pt-24">
+    <div className="flex flex-col justify-center items-center lg:pt-24">
       <SectionTitle title={`Welcome ${userData?.email}`} />
-      <div className="stats shadow">
+      <div className="stats flex flex-col md:flex-row max-w-full shadow">
         <div className="stat">
           <div className="stat-figure text-primary">
             <svg
