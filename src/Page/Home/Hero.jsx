@@ -52,19 +52,6 @@ const Hero = () => {
           <HeroImage item={item} />
         </SwiperSlide>
       ))}
-
-      {/* <SwiperSlide>
-        <HeroImage />
-      </SwiperSlide>
-      <SwiperSlide>
-        <HeroImage />
-      </SwiperSlide>
-      <SwiperSlide>
-        <HeroImage />
-      </SwiperSlide>
-      <SwiperSlide>
-        <HeroImage />
-      </SwiperSlide> */}
     </Swiper>
   );
 };
