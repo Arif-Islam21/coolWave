@@ -1,10 +1,12 @@
-const HeroImage = () => {
+// eslint-disable-next-line react/prop-types
+const HeroImage = ({ item }) => {
+  // eslint-disable-next-line react/prop-types
+  const { imageUrl } = item;
   return (
     <div
       className="hero min-h-[70vh]"
       style={{
-        backgroundImage:
-          "url(https://images.unsplash.com/photo-1524711212733-10ef1b0bec75?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+        backgroundImage: `url(${imageUrl})`,
       }}
     >
       <div className="hero-overlay bg-opacity-60"></div>
