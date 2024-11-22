@@ -55,6 +55,7 @@ const Testimonial = () => {
       />
       <>
         <Swiper
+          pagination={true}
           slidesPerView={1}
           spaceBetween={5}
           breakpoints={{
