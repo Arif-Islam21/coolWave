@@ -10,7 +10,7 @@ const About = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <p className="text-orange-400 font-bold">How we started</p>
-          <h1 className="text-6xl flex-wrap my-6 px-6 font-bold">
+          <h1 className="text-2xl lg:text-6xl flex-wrap my-6 px-6 font-bold">
             Our dream is to make products available for all in the world
           </h1>
           <p className="font-bold mt-12 pr-6">
@@ -26,8 +26,8 @@ const About = () => {
             alt=""
             className="rounded-xl"
           />
-          <div className="stats my-6 shadow">
-            <div className="stat">
+          <div className="stats flex flex-col lg:flex-row  my-6 shadow">
+            <div className="stat border ">
               <div className="stat-figure text-primary">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -47,8 +47,7 @@ const About = () => {
               <div className="stat-value text-primary">25.6K</div>
               <div className="stat-desc">21% more than last month</div>
             </div>
-
-            <div className="stat">
+            <div className="stat border">
               <div className="stat-figure text-secondary">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

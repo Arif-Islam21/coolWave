@@ -6,7 +6,7 @@ const Searchbar = ({ setSorting, setCategory, setBrand, setSearch }) => {
   };
 
   return (
-    <div className="flex justify-between items-center my-4">
+    <div className="flex lg:justify-between flex-col lg:flex-row gap-4 justify-start items-start lg:items-center my-4">
       <form onSubmit={(e) => handleSearch(e)} className="join">
         <input
           type="text"
