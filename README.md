@@ -16,3 +16,4 @@ FEATURES OF THIS APPLICATION:
 9. Mongodb for databse
 10. Clean Code
 11. User friendly UI
+12. Smooth UX
