@@ -1,6 +1,8 @@
 LIVE SITE URL : https://cool-wave-11900.web.app
 SERVER SIDE URL: https://cool-wave-server.vercel.app
 
+Note: please wait in the products page. thought it takes some time to load the data or give a refresh on the page
+
 FEATURES OF THIS APPLICATION:
 
 1. Build with most demanded UI library(React)
