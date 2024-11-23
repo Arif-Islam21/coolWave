@@ -5,6 +5,7 @@ import { AiOutlineStock } from "react-icons/ai";
 import useAxiosCommon from "../Hooks/useAxiosCommon";
 import useUser from "../Hooks/useUser";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const ProductsCard = ({ product }) => {
@@ -102,6 +103,12 @@ const ProductsCard = ({ product }) => {
             Cart
           </button>
         </div>
+        <Link
+          to={`/product/${_id}`}
+          className="btn btn-block btn-neutral btn-sm"
+        >
+          View Details
+        </Link>
       </div>
     </div>
   );

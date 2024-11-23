@@ -51,7 +51,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="min-h-screen h-full pl-2 pt-8 bg-amber-400">
+    <div className="min-h-screen h-full pl-0 lg:pl-2 pt-8 bg-amber-400">
       <NavLink to="/" className="text-sm lg:text-2xl btn font-bold font-serif">
         Cool Wave
       </NavLink>
