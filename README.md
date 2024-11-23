@@ -17,3 +17,8 @@ FEATURES OF THIS APPLICATION:
 10. Clean Code
 11. User friendly UI
 12. Smooth UX
+
+
+Buyer Email: buyer@buyer.com pass:@Buyer.1234
+Seller Email: seller@seller.com pass: @Arif.1234
+Admin Email: admin@admin.com pass: @Arif.1234
