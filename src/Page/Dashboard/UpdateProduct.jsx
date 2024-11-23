@@ -17,13 +17,15 @@ const UpdateProduct = () => {
   const axiosCommon = useAxiosCommon();
   const navigate = useNavigate();
 
-  const { data } = useQuery({
+  const { data = {} } = useQuery({
     queryKey: ["updateProduct"],
     queryFn: async () => {
       const { data } = await axiosCommon.get(`/product/${id}`);
       return data;
     },
   });
+
+  console.log(typeof data);
   const { brand, category, title, stockInt, priceInt, photo, description } =
     data;
 
