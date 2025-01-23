@@ -28,7 +28,7 @@ const ShowWishlistItem = () => {
           </tr>
         </thead>
         <tbody>
-          {wishlistData.map((item, idx) => (
+          {wishlistData?.map((item, idx) => (
             <tr key={item._id}>
               <td>{idx + 1}</td>
               <td>{item.title}</td>
