@@ -14,6 +14,17 @@ const ShowWishlistItem = () => {
     },
   });
 
+  if (
+    wishlistData.length === 0 ||
+    wishlistData.message === "No Items In wishlists"
+  ) {
+    return (
+      <h2 className="text-center text-2xl font-semibold">
+        You Have no item in your wishlist
+      </h2>
+    );
+  }
+
   return (
     <div className="overflow-x-auto">
       <table className="table table-zebra">
@@ -28,16 +39,17 @@ const ShowWishlistItem = () => {
           </tr>
         </thead>
         <tbody>
-          {wishlistData?.map((item, idx) => (
-            <tr key={item._id}>
-              <td>{idx + 1}</td>
-              <td>{item.title}</td>
-              <td>{item.category}</td>
-              <td>$ {item.priceInt}</td>
-              <td>{item.brand}</td>
-              <td>{item.stockInt}</td>
-            </tr>
-          ))}
+          {Array.isArray(wishlistData) &&
+            wishlistData?.map((item, idx) => (
+              <tr key={item._id}>
+                <td>{idx + 1}</td>
+                <td>{item.title}</td>
+                <td>{item.category}</td>
+                <td>$ {item.priceInt}</td>
+                <td>{item.brand}</td>
+                <td>{item.stockInt}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>

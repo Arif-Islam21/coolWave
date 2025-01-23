@@ -14,6 +14,14 @@ const ShowCartItem = () => {
     },
   });
 
+  if (cartData.length === 0 || cartData.message === "No Items In Cart") {
+    return (
+      <div className="text-center text-3xl font-semibold">
+        No items in cart.
+      </div>
+    );
+  }
+
   return (
     <div className="overflow-x-auto">
       <table className="table table-zebra">
@@ -28,16 +36,17 @@ const ShowCartItem = () => {
           </tr>
         </thead>
         <tbody>
-          {cartData.map((item, idx) => (
-            <tr key={item._id}>
-              <td>{idx + 1}</td>
-              <td>{item.title}</td>
-              <td>{item.category}</td>
-              <td>$ {item.priceInt}</td>
-              <td>{item.brand}</td>
-              <td>{item.stockInt}</td>
-            </tr>
-          ))}
+          {Array.isArray(cartData) &&
+            cartData.map((item, idx) => (
+              <tr key={item._id}>
+                <td>{idx + 1}</td>
+                <td>{item.title}</td>
+                <td>{item.category}</td>
+                <td>$ {item.priceInt}</td>
+                <td>{item.brand}</td>
+                <td>{item.stockInt}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
